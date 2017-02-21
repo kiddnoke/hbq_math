@@ -1,18 +1,17 @@
 workspace "HBQ_MATH"
-	configurations { "Debug", "Release" }
-	defines { "LINUX" }
-	-- flags { "EnableSSE2" }
-	-- -mfpmath=sse -msse2
-	buildoptions { "-mfpmath=sse -msse2 "} -- "-mms-bitfields"
-
+	configurations {"Debug", "Release"}
+	platforms {"x32" , "x64"}
+	flags {"EnableSSE2" , "FloatStrict"}
 	configuration "Debug"
-		defines { "DEBUG", "_DEBUG" }
-		buildoptions {"-Wall"  }
-	    flags { "Symbols" }
+		defines {"DEBUG" , "_DEBUG"}
+		flags {"Symbols"}
 	configuration "Release"
 		defines { "NDEBUG", "NODEBUG" }
-		optimize "On"
-		flags { "Optimize" }
+		flags { "OptimizeSpeed" }
+	configuration "x32"
+		architecture "x86"
+	configuration "x64"
+		architecture "x86_64"
 project "hbq_math_searchtable"
 	kind "ConsoleApp"
 	language "C++" 
